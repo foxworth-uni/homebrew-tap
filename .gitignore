@@ -1,0 +1,14 @@
+# Homebrew specific
+*.bottle.tar.gz
+*.bottle.json
+
+# macOS specific
+.DS_Store
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
