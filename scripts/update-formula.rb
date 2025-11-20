@@ -1,6 +1,32 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# Formula Updater for foxworth-uni Homebrew Tap
+#
+# Automates updating Homebrew formulae with new versions and bottles.
+# Fetches SHA256 hashes from GitHub releases and updates formula files.
+#
+# Usage:
+#   ruby update-formula.rb <formula> [version] [--dry-run]
+#
+# Examples:
+#   ruby update-formula.rb danny              # Auto-detect latest version
+#   ruby update-formula.rb danny 0.0.7        # Specific version
+#   ruby update-formula.rb danny --dry-run    # Preview without changes
+#
+# Requirements:
+#   - Ruby (stdlib only, no gems needed)
+#   - Git
+#   - Internet connection
+#
+# Process:
+#   1. Detect or prompt for version
+#   2. Fetch source tarball SHA256 from GitHub
+#   3. Fetch ARM64 bottle SHA256 from GitHub Releases
+#   4. Fetch x86_64 bottle SHA256 from GitHub Releases
+#   5. Update Formula/<formula>.rb with new hashes
+#   6. Commit and push changes (unless --dry-run)
+
 require 'net/http'
 require 'digest/sha2'
 require 'uri'
